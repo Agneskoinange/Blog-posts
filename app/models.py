@@ -1,127 +1,84 @@
-from app import db
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
-from . import login_manager
-from datetime import datetime
+from . import db,login_manager
+from werkzeug.security import generate_password_hash,check_password_hash
+from flask_login import UserMixin,current_user
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-    
+class User(UserMixin,db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer,primary_key = True)
+    username = db.Column(db.String(255),index = True)
+    email = db.Column(db.String(255),unique = True,index = True)
+    pass_secure = db.Column(db.String(255))
+    bio = db.Column(db.String(255))
+    profile_pic_path = db.Column(db.String())
+    blog = db.relationship('Blog',backref='user', lazy='dynamic')
+    comment = db.relationship('Comment', backref='user', lazy='dynamic')
 
-class User(UserMixin, db.Model):
-    __tablename__='users'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    about = db.Column(db.String(255))
-    avatar = db.Column(db.String())
-    password_encrypt=db.Column(db.String(128))
-    pitches = db.relationship('Pitches', backref='user', lazy='dynamic')
-    like = db.relationship('UpVote',backref='user',lazy='dynamic')
-    dislike = db.relationship('DownVote',backref='user',lazy='dynamic')
-    comments = db.relationship('Comments', backref='comments', lazy='dynamic')
-
-
-    @property   #write-only
+    @property
     def password(self):
-        raise AttributeError('You can only read this attribute')
+        raise AttributeError('You cannot read the password attribute')
 
     @password.setter
     def password(self, password):
-        self.password_encrypt = generate_password_hash(password)
+        self.pass_secure = generate_password_hash(password)
 
-    def check_password(self, password):
-        return check_password_hash(self.password_encrypt, password)
 
+    def verify_password(self,password):
+        return check_password_hash(self.pass_secure,password)
+    
     def __repr__(self):
-        return f'User{self.username}'
+        return f'User {self.username}'
 
 
-class Pitches(db.Model):
-    __tablename__='pitches'
+class Blog(db.Model):
+     __tablename__ = 'blog'
+     id = db.Column(db.Integer,primary_key = True)
+     username = db.Column(db.String(255),index = True)
+     blog = db.Column(db.String(300),index =True)
+     title = db.Column(db.String(100), index = True)
+     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+     comment = db.relationship('Comment', backref='pitch', lazy='dynamic')
+
+     def save_p(self):
+        db.session.add(self)
+        db.session.commit()
+
+     def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+     def get_blog(id):
+        blog = Blog.query.filter_by(id=id).first()
+        return blog
+
+     def __repr__(self):
+        return f'Blog {self.title}'
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
-    category = db.Column(db.String(255))
-    text = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    posted = db.Column(db.DateTime, default=datetime.utcnow)
-    comments = db.relationship('Comments', backref='pitch', lazy='dynamic')
-    like = db.relationship('UpVote',backref='pitch',lazy='dynamic')
-    dislike = db.relationship('DownVote',backref='pitch',lazy='dynamic')
+    comment = db.Column(db.Text(),nullable = False)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
+    blog_id = db.Column(db.Integer,db.ForeignKey('blog.id'),nullable = False)
     
 
-    def save_pitch(self):
+    def save_c(self):
         db.session.add(self)
         db.session.commit()
 
-    @classmethod
-    def get_category(cls, category):
-        pitches = Pitches.query.filter_by(category=category).all()
-        return pitches
-
-    def __repr__(self):
-        return f'Pitches{self.text}'
-
-
-class UpVote(db.Model):
-    __tablename__ = 'likes'
-    id = db.Column(db.Integer,primary_key=True)
-    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
-
-    def save(self):
-        db.session.add(self)
+    def delete(self):
+        db.session.remove(self)
         db.session.commit()
 
     @classmethod
-    def get_likes(cls,id):
-        like = UpVote.query.filter_by(pitch_id=id).all()
-        return like
-
-    def __repr__(self):
-        return f'{self.user_id}:{self.pitch_id}'
-
-
-class DownVote(db.Model):
-    __tablename__ = 'dislikes'
-
-    id = db.Column(db.Integer,primary_key=True)
-    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
-    
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-    @classmethod
-    def get_dislikes(cls,id):
-        dislike = DownVote.query.filter_by(pitch_id=id).all()
-        return dislike
-
-    def __repr__(self):
-        return f'{self.user_id}:{self.pitch_id}'
-    
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(user_id)
-
-
-class Comments(db.Model):
-    __tablename__='comments'
-    id = db.Column(db.Integer, primary_key=True)
-    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
-    comment = db.Column(db.String(), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    
-    def save_comment(self):
-        db.session.add(self)
-        db.session.commit()
-
-    @classmethod
-    def get_comments(cls,pitch_id):
-        comments = Comments.query.filter_by(pitch_id=pitch_id)
+    def get_comments(cls,blog_id):
+        comments = Comment.query.filter_by(blog_id=blog_id).all()
         return comments
+
     
     def __repr__(self):
-        return f'Comments:{self.comment}'
+        return f'comment:{self.comment}'
+    
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
