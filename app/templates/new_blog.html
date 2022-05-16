@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+{{ message }}
+</div>
+{% endfor %}
+
+<div class="container-fluid landing">
+    <div class="row">
+                {% for blog in blog %}
+                <div class="col-md-4 d-flex jusify-content-center" style="margin: 1%; width: 500px;">
+                    <div class="card" style="background-color:whitesmoke;">
+                        <h5 style="color:black; font-size:30px;" class="card-header">{{blog.title}}</h5>
+                        <div class="card-body">
+                                <p style="font-size: 40px;">{{blog.blog}}</p>
+                                <footer class="blockquote-footer text-center" > Posted by: {{blog.username}}</footer>
+                                
+                                <span class="foot" >{{blog.comment.count()}} Comments</span>
+                                    <a href="{{url_for('main.comment',blog_id = blog.id)}}" class="btn btn-primary"> Comment</a>
+                                    {% if blog.user == current_user %}
+                                    <div class="yo" style="float: right;">
+                                        <a  class="btn btn-info btn-sm m-1" href="{{url_for('main.updateblog',blog_id = blog.id)}}">Edit Blog</a>
+                                    </div>
+                                    <div class="yo" style="float: right;">
+                                        <form action="{{url_for('main.delete_post',blog_id = blog.id)}}" method="POST">
+                                            <input  type="submit" class="btn  btn-primary" value="Delete Post">
+                                        </form>
+                                    
+                                    </div>
+                    
+                                    {% endif %} 
+                                
+                        </div>
+                            
+                        </div>
+                    </div>
+                
+                {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
