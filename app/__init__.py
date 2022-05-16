@@ -1,4 +1,4 @@
-
+import os
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from config import config_options
@@ -9,6 +9,7 @@ from config import Config
 from config import DevConfig
 from flask_uploads import UploadSet,configure_uploads,IMAGES
 
+app = Flask(__name__)
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -39,7 +40,10 @@ def create_app(config_name):
     app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')
 
     # setting config
-    from .requests import configure_request
-    configure_request(app)
+    # from .requests import configure_request
+    # configure_request(app)
+
+    # configure UploadSet
+    configure_uploads(app,photos)
 
     return app

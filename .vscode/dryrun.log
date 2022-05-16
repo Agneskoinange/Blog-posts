@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/nessie/Blog-posts'
+flask run
+make: Leaving directory '/home/nessie/Blog-posts'
+ 
