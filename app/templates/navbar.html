@@ -1,18 +1,18 @@
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"> Watchlist </a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-        </div>
+<nav class="navbar navbar-inverse" role="navigation" style="font-size: x-large;">
+    <a href="{{url_for('main.home')}}" class="navbar-brand" style="font-size: 25px;">Home</a> 
+  
+      
+      <a href="{{url_for('main.new_blog')}}" class="navbar-brand" style="font-size: 25px;">Create Blog</a>
+      <a href="{{url_for('main.blog')}}" class="navbar-brand" style="font-size: 25px;">View Blog</a>
+      <a href="{{url_for('main.random')}}" class="navbar-brand" style="font-size: 25px;">Random Quote</a>
 
-    </div>
-</div>
+      <div class="dropdown" style="font-size: x-large;">
+        <a class="btn btn-primary dropdown-toggle" style="width: 150px; font-size: 25px;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          Account
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="font-size: 25px;">
+          <li><a class="dropdown-item" href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+          <li><a class="dropdown-item" href="{{url_for('auth.logout')}}">Sign out</a></li>
+        </ul>
+      </div>
+</nav>
