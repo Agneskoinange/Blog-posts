@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container" style="font-size: 50px; margin-left: 30%; margin-top: 10%;">
+<div class="row">
+<!-- displaying  Username-->
+  <div class="col-md-4">
+    <h2> Name: {{user.username| capitalize}} </h2>
+
+    <!--Displaying user bio-->
+    {% if user.bio %}
+      <p style="color: black;"> Bio: {{user.bio}}</p>
+    {%else%}
+      <p style="color: black;"> {{user.username| capitalize}} has no bio </p>
+    {% endif %}
+  </div>
+
+  <!--Display profile photo-->
+  <div class="col-md-4" style="margin-top: 1%;">
+
+    {% if user.profile_pic_path %}
+    <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+    {%else%}
+    <p style="color:black;">No profile picture</p>
+    {% endif %}
+
+    {% if user == current_user %}
+    <a style="font-size: 50px;" href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+    {% endif %}
+  </div>
+</div>
+</div>
+{% endblock %}
