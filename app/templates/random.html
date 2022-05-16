@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" style="text-align: center; margin-top: 10%;width: 40%;">
+    <h2>A Random Quote to Inspire You</h2>
+    <div class="card cardquote">
+        <div class="card-title">
+            <h4 style="text-decoration: underline;">A quote by: <span style="color: rgb(3, 3, 3)">{{quote.author}}</span> </h4>
+        </div>
+        <p class="card-text" style="width: 80%; margin-left: 10%;">{{quote.quote}}</p>
+    </div>
+</div>
+
+{% endblock %}
