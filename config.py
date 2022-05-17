@@ -19,6 +19,10 @@ class Config:
 
 class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blogs'
+    # uri = os.getenv('DATABASE_URL')
+    # if uri and uri.startswith('postgres://'):
+    #     uri = uri.replace('postgres://', 'postgresql://', 1)
+    # SQLALCHEMY_DATABASE_URI = uri
 
 
 
