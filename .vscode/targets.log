@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon May 16 21:32:37 2022
+# Make data base, printed on Tue May 17 15:02:47 2022
 
 # Variables
 
@@ -51,7 +53,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:37814
+JOURNAL_STREAM = 8:39037
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -65,8 +67,6 @@ MAKEFILE_LIST :=  makefile
 # environment
 IM_CONFIG_PHASE = 1
 # environment
-QT_IM_MODULE = ibus
-# environment
 USERNAME = nessie
 # environment
 MAKELEVEL := 0
@@ -77,7 +77,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1001
+MANAGERPID = 1009
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -89,11 +89,11 @@ GSETTINGS_SCHEMA_DIR = /snap/code/96/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/nessie/Blog-posts/virtual/bin:/home/nessie/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PATH = /home/nessie/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/nessie-VivoBook-ASUSLaptop-X512UA:@/tmp/.ICE-unix/1336,unix/nessie-VivoBook-ASUSLaptop-X512UA:/tmp/.ICE-unix/1336
+SESSION_MANAGER = local/nessie-VivoBook-ASUSLaptop-X512UA:@/tmp/.ICE-unix/1333,unix/nessie-VivoBook-ASUSLaptop-X512UA:/tmp/.ICE-unix/1333
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -111,7 +111,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = b0d62f6fbcff4f638dbdfa39b45e9ff2
+INVOCATION_ID = b4c1ff3922714a0983b8b3c0600bfde3
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/96/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -135,7 +135,7 @@ PWD = /home/nessie/Blog-posts
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1295
+SSH_AGENT_PID = 1293
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -183,7 +183,7 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-VIRTUAL_ENV = /home/nessie/Blog-posts/virtual
+QT_IM_MODULE = ibus
 # environment
 SNAP_USER_DATA = /home/nessie/snap/code/96
 # environment
@@ -191,7 +191,7 @@ SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-cb40aba2-e939-4735-bb5d-65c272d81947.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-aa7bb59c-e272-4f2f-9c76-73917d6f1790.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -235,6 +235,8 @@ GDK_BACKEND = x11
 # environment
 LC_PAPER = en_US.UTF-8
 # environment
+NO_AT_BRIDGE = 1
+# environment
 LC_IDENTIFICATION = en_US.UTF-8
 # environment
 QT_ACCESSIBILITY = 1
@@ -255,11 +257,11 @@ LC_ALL = C
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/9f110d64_7333_4bf9_9c19_aace008ac66d
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/3f56c39d_eea8_413a_87f8_ffcabb5e64a3
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.123
+GNOME_TERMINAL_SERVICE = :1.115
 # default
 SUFFIXES := 
 # environment
@@ -276,19 +278,17 @@ GJS_DEBUG_OUTPUT = stderr
 .RECIPEPREFIX := 
 # environment
 LC_ADDRESS = en_US.UTF-8
- 
-make: *** No rule to make target 'all'.  Stop.
-
 # environment
 LANG = C
+ 
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 48408
+VSCODE_PID = 49727
 # environment
 NVM_RC_VERSION = 
 # variable set hash-table stats:
-# Load=137/1024=13%, Rehash=0, Collisions=22/162=14%
+# Load=137/1024=13%, Rehash=0, Collisions=20/162=12%
 
 # Pattern-specific Variable Values
 
@@ -296,9 +296,9 @@ NVM_RC_VERSION =
 
 # Directories
 
-# . (device 2055, inode 2102143): 15 files, no impossibilities.
+# . (device 2055, inode 2102143): 18 files, no impossibilities.
 
-# 15 files, no impossibilities in 1 directories.
+# 18 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -355,12 +355,12 @@ migrations:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 23 / storage = 200 B / avg = 8 B
-# current buf: size = 8162 B / used = 200 B / count = 23 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 226 B / avg = 9 B
+# current buf: size = 8162 B / used = 226 B / count = 25 / avg = 9 B
 
-# strcache performance: lookups = 30 / hit rate = 23%
+# strcache performance: lookups = 33 / hit rate = 24%
 # hash-table stats:
-# Load=23/8192=0%, Rehash=0, Collisions=1/30=3%
-# Finished Make data base on Mon May 16 21:32:37 2022
+# Load=25/8192=0%, Rehash=0, Collisions=1/33=3%
+# Finished Make data base on Tue May 17 15:02:47 2022
 
  

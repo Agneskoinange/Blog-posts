@@ -5,5 +5,7 @@ export SECRET_KEY='agnes123456'
 export MAIL_USERNAME='koinangeagnes@gmail.com'
 export MAIL_PASSWORD='0708042343'
 export SECRET_KEY='agnes123456'
+export SQLALCHEMY_DATABASE_URI = 'sqlite:///blog.db'
+export SQLAlchemy engine='sqlite:///:memory:'
 
 python3 manage.py server
