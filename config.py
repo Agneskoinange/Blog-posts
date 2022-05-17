@@ -10,11 +10,11 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    # SECRET_KEY = os.environ.get('SECRET_KEY')
     # SQLAlchemy engine='sqlite:///:memory:'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blogs'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY='agnes12346'
+    SECRET_KEY='agnes123456'
 
 
 class ProdConfig(Config):
