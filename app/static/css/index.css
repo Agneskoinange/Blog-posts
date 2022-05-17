@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins',sans-serif;
+  background-image: url(Image1.jpg);
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+.center{
+  position: absolute;
+  top:52% ;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
+}
+.center .title{
+  color: black;
+  font-size: 55px;
+  font-weight: 600;
+}
+.center .sub_title{
+  color: black;
+  font-size: 52px;
+  font-weight: 600;
+}
+.center .btns{
+  margin-top: 20px;
+}
+.center .btns button{
+  height: 55px;
+  width: 170px;
+  border-radius: 5px;
+  border: none;
+  margin: 0 10px;
+  border: 2px solid black;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0 10px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.center .btns button:first-child{
+  color: black;
+  background: none;
+}
+
+.center .btns button:last-child{
+  background: black;
+  color: white;
+}
+p{
+    font-size: x-large;
+}
+.container h2{
+    color: black;
+    font-size: xx-large;
+}
+section h2{
+  position:absolute ;
+  top:30%;
+  left: 30%;
+  width:70%;
+  font-size:4em;
+  text-align:center;
+  transform:translate ;
+  color:black;
+  font: bold;
+  transform:translateY (-50%);
+}
+

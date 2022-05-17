@@ -1,6 +1,8 @@
 import os
 
 class Config:
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     # email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -9,25 +11,19 @@ class Config:
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SECRET_KEY = os.environ.get('SECRET_KEY')
+    # SQLAlchemy engine='sqlite:///:memory:'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blogs'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY='agnes12346'
 
 
 class ProdConfig(Config):
-    '''
-    Production  configuration child class
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blogs'
 
-    Args:
-        Config: The parent configuration class with General configuration settings
-    '''
-    pass
 
 
 class DevConfig(Config):
-    '''
-    Development  configuration child class
-
-    Args:
-        Config: The parent configuration class with General configuration settings
-    '''
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blogs'
 
     DEBUG = True
 
