@@ -1,8 +1,14 @@
 {% extends 'base.html'%}
 {% import 'bootstrap/wtf.html' as wtf%}
 
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+
 {% block content %}
-<div class="container">
+<div class="container body">
 <div class="row">
 <div class="col-md-2"> </div>
 <div class="col-md-8">

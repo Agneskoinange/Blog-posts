@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
 {% block content %}
-<div>
+<div class="body">
     <div class="text-center" style="padding-top: 100px;">
         <h3>
             This site enables you to store your opionated blogs as per your perspectives. 

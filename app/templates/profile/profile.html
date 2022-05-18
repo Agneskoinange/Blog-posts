@@ -1,7 +1,13 @@
 {% extends 'base.html'%}
 
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+ 
 {% block content %}
-<div class="container" style="font-size: 50px; margin-left: 30%; margin-top: 10%;">
+<div class="container body" style="font-size: 50px; margin-left: 30%; margin-top: 10%;">
 <div class="row">
 <!-- displaying  Username-->
   <div class="col-md-4">
