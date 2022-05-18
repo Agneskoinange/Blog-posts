@@ -12,21 +12,22 @@ class Config:
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     # SECRET_KEY = os.environ.get('SECRET_KEY')
     # SQLAlchemy engine='sqlite:///:memory:'
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blogspar'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY='agnes123456'
 
 
 class ProdConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blog'
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blogspar'
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    
     uri = os.getenv('DATABASE_URL')
     if uri and uri.startswith('postgres://'):
         uri = uri.replace('postgres://', 'postgresql://', 1)
     SQLALCHEMY_DATABASE_URI = uri
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nessie:agnes1234@localhost/blogspar'
 
     DEBUG = True
 
